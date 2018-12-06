@@ -90,7 +90,7 @@ echo('<!--<div class="topbar">
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">1</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
