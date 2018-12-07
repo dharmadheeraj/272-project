@@ -59,14 +59,14 @@ else {
 										foreach($data as $key => $value)
 										{		
 						
-echo('<tr class="table-head">
-							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
-							<th class="column-5">Total</th>
-						</tr>
-<tr class="table-row">
+						echo('<tr class="table-head">
+													<th class="column-1"></th>
+													<th class="column-2">Product</th>
+													<th class="column-3">Price</th>
+													<th class="column-4 p-l-70">Quantity</th>
+													<th class="column-5">Total</th>
+												</tr>
+						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
 									<img src="'.$data[$key]['imagepath'].'" alt="IMG-PRODUCT">

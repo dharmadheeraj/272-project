@@ -63,7 +63,7 @@
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<a href="product.php?owner=Dharma" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
 								Shop Now
 							</a>
 						</div>
@@ -82,7 +82,7 @@
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="slideInUp">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<a href="product.php?owner=Pratheek" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
 								Shop Now
 							</a>
 						</div>
@@ -101,7 +101,7 @@
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="rotateIn">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<a href="product.php?owner=Jason" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
 								Shop Now
 							</a>
 						</div>
@@ -135,7 +135,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?owner=Manish" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Sunglasses
 							</a>
 						</div>
@@ -149,7 +149,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?owner=Dharma" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Watches
 							</a>
 						</div>
@@ -161,7 +161,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?owner=Pratheek" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Footerwear
 							</a>
 						</div>
@@ -175,7 +175,7 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+							<a href="product.php?owner=Jason" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
 								Bags
 							</a>
 						</div>

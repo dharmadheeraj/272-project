@@ -11,9 +11,6 @@ $password = 'linkedin_pass';
 $dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
 
 
-$sql = "INSERT into userscart values ('TEst','TEst','TEst')";
-
-
 try {
     $conn = new PDO($dsn, $username, $password);
     // set the PDO error mode to exception
@@ -27,10 +24,13 @@ try {
     $stmt->bindParam(':productid', $lastname);
     $stmt->bindParam(':producturl', $email);
 	
+	
 	// insert a row
     $firstname = $_GET['username'];
     $lastname = $_GET['productid'];
     $email = $_GET['producturl'];
+	
+	
     if($stmt->execute())
 	{
 		echo('Successful');

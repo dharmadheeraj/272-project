@@ -1,11 +1,30 @@
 <?php
 session_start();
 
+$cart = 0;
+
 $name = "";
 if(isset($_SESSION['login'])){
 	$name = $_SESSION['login'];
-}
 
+$servername = "linkedin.cx2nnmpqznns.us-east-1.rds.amazonaws.com:3306";
+$username = "linkedin_user";
+$password = "linkedin_pass";
+$dbname = "project";
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ 
+$show = array();
+$sql = "SELECT * from userscart where username='" .$name . "'";
+$result = $conn->query($sql);
+	
+$cart = $result->num_rows > 0 ? $result->num_rows:0;
+}
 
 echo('<!--<div class="topbar">
 				<div class="topbar-social">
@@ -98,80 +117,12 @@ echo('<!--<div class="topbar">
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">1</span>
+						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON" onclick="getcartShort()">
+						<span class="header-icons-noti">' .$cart .'</span>
 
 						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="header-cart-total">
-								Total: $75.00
-							</div>
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
-							</div>
+						<div class="header-cart header-dropdown" id="cartShort">
+						
 						</div>
 					</div>
 				</div>
@@ -183,6 +134,24 @@ echo('<!--<div class="topbar">
 	document.getElementById('name').innerHTML = sessionStorage.getItem("login");
 	if(sessionStorage.getItem("profilepic")!=null)
 	document.getElementById('profilepic').src = sessionStorage.getItem("profilepic");
-
+	
+	function getcartShort()
+		{
+			console.log("Isnide getCart Short");			
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.status);
+			document.getElementById('cartShort').innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", "getCartShort.php",true);
+		xhttp.send();
+				
+				//console.log("Value of var2",my_var);
+			
+		}
+		
+	</script>
 
 </script>
