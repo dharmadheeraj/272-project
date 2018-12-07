@@ -289,11 +289,11 @@ function getLikes($id){
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
 						Reviews
 						<?php 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//header("Access-Control-Allow-Origin: *");
+//header("Content-Type: application/json; charset=UTF-8");
+//header("Access-Control-Allow-Methods: POST");
+//header("Access-Control-Max-Age: 3600");
+//header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once './config/database.php';
 
@@ -319,11 +319,11 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 						<p class="s-text8">
 
 <?php 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//header("Access-Control-Allow-Origin: *");
+//header("Content-Type: application/json; charset=UTF-8");
+//header("Access-Control-Allow-Methods: POST");
+//header("Access-Control-Max-Age: 3600");
+//header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once './config/database.php';
 

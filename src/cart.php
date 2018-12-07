@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,14 +33,17 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition" onload="getcart()">
+
+	
+	
 
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
 		<div class="container-menu-header">
 			<?php
-			include 'nav.php';
+			//include 'nav.php';
 			?>
 		</div>
 	</header>
@@ -50,44 +55,19 @@
 		</h2>
 	</section>
 
+	
 	<!-- Cart -->
 	<section class="cart bgwhite p-t-70 p-b-100">
 		<div class="container">
+
+
 			<!-- Cart item -->
+			
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
-					<table class="table-shopping-cart">
-						<tr class="table-head">
-							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
-							<th class="column-5">Total</th>
-						</tr>
-
-						<tr class="table-row">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
-								</div>
-							</td>
-							<td class="column-2">Men Tshirt</td>
-							<td class="column-3">$36.00</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-							</td>
-							<td class="column-5">$36.00</td>
-						</tr>
+					<table class="table-shopping-cart" id="getcart">
+						
+						
 
 						<tr class="table-row">
 							<td class="column-1">
@@ -191,7 +171,7 @@
 							<!-- Button -->
 							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 								Update Totals
-							</button>
+								</button>
 						</div>
 					</div>
 				</div>
@@ -424,6 +404,34 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+	
+	function getcart()
+		{
+			console.log("Isnide add to cart");
+		/* 	var productid = <?php echo json_encode($data[0]['id']); ?>;
+				var producturl = <?php echo json_encode($data[0]['url']); ?>; */	
+			/* 	var username = "pratik";
+				console.log("usrname",productid);
+				console.log("username",producturl);
+				console.log("usrname",username);
+				var data = {producturl:producturl, productid:productid, username:username} */
+			
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.status);
+			document.getElementById('getcart').innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", "getcart.php",true);
+		xhttp.send();
+				
+				//console.log("Value of var2",my_var);
+			
+		}
+	</script>
 
 </body>
 </html>
