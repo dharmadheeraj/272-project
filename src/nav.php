@@ -90,8 +90,8 @@ echo('<!--<div class="topbar">
 				<!-- Header Icon -->
 				<div class="header-icons">
 					<a href="login.php" class="header-wrapicon1 dis-block">
-						<img id="profilepic" src="images/icons/icon-header-01.png" class="header-icon1" alt="images/icons/icon-header-01.png">
-					' .$name. '
+						<img src="images/icons/icon-header-01.png" id="profilepic" class="header-icon1">
+					<span id="name">'.$name.'</span>
 					</a>
 					
 
@@ -178,3 +178,11 @@ echo('<!--<div class="topbar">
 			</div>
 		')
 ?>
+<script type="text/javascript">
+	if(sessionStorage.getItem("profilepic")!=null)
+	document.getElementById('name').innerHTML = sessionStorage.getItem("login");
+	if(sessionStorage.getItem("profilepic")!=null)
+	document.getElementById('profilepic').src = sessionStorage.getItem("profilepic");
+
+
+</script>
