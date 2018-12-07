@@ -42,8 +42,7 @@
 			include 'nav.php';
 			
 			
-							try
-							{
+							
 							$ch = curl_init(); 
 
 							// set url 
@@ -55,7 +54,8 @@
 									curl_setopt($ch, CURLOPT_URL, $url); 
 									break;
 								case "Dharma":
-									curl_setopt($ch, CURLOPT_URL, "http://dharmachintala.com/school/getProducts.php"); 
+									$url = "http://dharmachintala.com/school/getProducts.php?id=".$_GET['id'];
+									curl_setopt($ch, CURLOPT_URL, $url); 
 									break;
 								case "Pratheek":
 									curl_setopt($ch, CURLOPT_URL, "http://www.pratikpagade.com/object.php"); 
@@ -74,8 +74,11 @@
 							// $output contains the output string 
 							$output = curl_exec($ch); 
 							
+							//echo $output;
+
 							$data =  json_decode($output,true);
 							
+							//print_r ($data);
 					//$pieces = explode("/", $data[0]['imagepath']);
 							
 							
@@ -115,45 +118,38 @@
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
+		<?php foreach ($data as $key => $value) {
+				echo ('
 			<div class="w-size13 p-t-30 respon5">
 				<div class="wrap-slick3 flex-sb flex-w">
-					<div class="wrap-slick3-dots"></div>
+					
 
 					<div class="slick3">
-						<div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
+						
 							<div class="wrap-pic-w">
-								<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
-							</div>
+								<img src="'.$data[0]['imagepath'].'" alt="IMG-PRODUCT">
+							
 						</div>
 
-						<div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
-							<div class="wrap-pic-w">
-								<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-							</div>
-						</div>
-
-						<div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
-							<div class="wrap-pic-w">
-								<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="w-size14 p-t-30 respon5">
-				<h4 class="product-detail-name m-text16 p-b-13">
-					Boxy T-Shirt with Roll Sleeve Detail
-				</h4>
+			<h4 class="product-detail-name m-text16 p-b-13">
+				
+					'.$data[$key]['productname'].'</h4>
+				
 
 				<span class="m-text17">
-					$22
+				'.$data[$key]['price'].'	
 				</span>
 
 				<p class="s-text8 p-t-10">
-					Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-				</p>
-
+				'.$data[$key]['description'].'
+				</p>');
+			}
+			?>
 				<!--  -->
 				<div class="p-t-33 p-b-60">
 					<div class="flex-m flex-w p-b-10">
@@ -226,9 +222,7 @@
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
-						</p>
+						
 					</div>
 				</div>
 
@@ -240,9 +234,7 @@
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
-						</p>
+						
 					</div>
 				</div>
 
