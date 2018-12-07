@@ -33,70 +33,70 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition" onload="onload();">
 
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
 		<div class="container-menu-header">
 			<?php
-			include 'nav.php';
-			
-			
-							try
-							{
-							$ch = curl_init(); 
-
-							// set url 
-							
-							switch($_GET['owner'])
+			include 'nav.php';	
+				
+				switch($_GET['owner'])
 							{
 								case "Manish":
-									curl_setopt($ch, CURLOPT_URL, "http://www.manishgangal.com/product_api.php"); 
+									$temp = '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/manish.jpg);">
+											<h2 class="l-text2 t-center" style="color:#060606">'
+												. $_GET['owner'] .
+												'</h2>
+											<p class="m-text13 t-center" style="color:#060606">
+												Shop the latest Sunglasses 2018
+											</p>
+										</section>';
 									break;
 								case "Dharma":
-									curl_setopt($ch, CURLOPT_URL, "http://dharmachintala.com/school/getProducts.php"); 
+									$temp = '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/dharma2.jpg);">;
+									<h2 class="l-text2 t-center">'
+												. $_GET['owner'] .
+												'</h2>
+											<p class="m-text13 t-center">
+												Shop the latest Watches 2018
+											</p>
+										</section>';
 									break;
 								case "Pratheek":
-									curl_setopt($ch, CURLOPT_URL, "http://www.pratikpagade.com/object.php"); 
+									$temp = '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/pratheek.jpg);">;
+										<h2 class="l-text2 t-center" style="color:#060606">'
+												. $_GET['owner'] .
+												'</h2>
+											<p class="m-text13 t-center" style="color:#060606">
+												Shop the latest Footwear 2018
+											</p>
+										</section>';
+									$url = "images/prathik.jpg";
 									break;
 								case "Jason":
-									curl_setopt($ch, CURLOPT_URL, "http://www.jasongcenter.com/curl_products.php"); 
+								    $temp = '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/jason.jpg);">;
+									<h2 class="l-text2 t-center" style="color:#060606">'
+												. $_GET['owner'] .
+												'</h2>
+											<p class="m-text13 t-center" style="color:#060606">
+												Shop the latest HandBags 2018
+											</p>
+										</section>';
+									$url = "images/jason.jpg";
 									break;
 								default:
-									curl_setopt($ch, CURLOPT_URL, "http://dharmachintala.com/school/getProducts.php"); 
+									$temp = '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/heading-pages-02.jpg);">';
+									$url = "images/default.jpg";
 									break;
 							}
-
-							//return the transfer as a string 
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-
-							// $output contains the output string 
-							$output = curl_exec($ch); 
-							
-							$data =  json_decode($output,true);
-							
-					//$pieces = explode("/", $data[0]['imagepath']);
-							
-							
-						//for($p=0;$p<$pieces.size()-1;$p++)
-							//{
-								
-							//}
-							
 			?>
 		</div>
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url( );">
-		<h2 class="l-text2 t-center">
-			<?php echo($_GET['owner']); ?>
-		</h2>
-		<p class="m-text13 t-center">
-			New Arrivals Women Collection 2018
-		</p>
-	</section>
+	<?php echo($temp); ?>
 
 
 	<!-- Content page -->
@@ -159,7 +159,7 @@
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
 									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" onClick=filter()>
 										Filter
 									</button>
 								</div>
@@ -228,7 +228,7 @@
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
+								<select class="selection-2" id="sort" name="sorting" onchange="sort()">
 									<option>Default Sorting</option>
 									<option>Popularity</option>
 									<option>Price: low to high</option>
@@ -236,7 +236,7 @@
 								</select>
 							</div>
 
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+							<!--<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
 									<option>Price</option>
 									<option>$0.00 - $50.00</option>
@@ -246,7 +246,7 @@
 									<option>$200.00+</option>
 
 								</select>
-							</div>
+							</div> -->
 						</div>
 
 						<span class="s-text8 p-t-5 p-b-5">
@@ -255,59 +255,8 @@
 					</div>
 
 					<!-- Product -->
-					<div class="row">
-						<?php
-							
-
-							if (count($data) > 0)
-							{
-								foreach ($data as $key => $value) {
-								echo('<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img src="' .$data[$key]['imagepath'] . '" alt="IMG-PRODUCT" style="height:360px;width:270px">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.php?owner='. $_GET['owner'] . '&id=' . $data[$key]['id'] . '" class="block2-name dis-block s-text3 p-b-5">
-										' . $data[$key]['productname'] . '
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										' . $data[$key]['price'] . '
-									</span>
-								</div>
-							</div>
-						</div>');
-							}
-							
-							}
-							
-							curl_close($ch);
-				}
-				
-				catch(Exception $e)
-				{
-					echo ($e);
-				}
-							
-						
-						?>
+					<div class="row"id="products">
+					
 						
 					</div>
 
@@ -514,6 +463,26 @@
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	function onload() {
+			  var xhttp;
+			  var owner = "<?php echo($_GET['owner']); ?>";
+			  
+			  xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				  document.getElementById("products").innerHTML = this.responseText;
+				}
+			  };
+			  xhttp.open("GET", "getProducts.php?owner="+owner, true);
+			  xhttp.send();   
+			}
+	
+	</script>
+	
+	
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -524,6 +493,40 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+		
+		
+
+		function sort() {
+			var x = document.getElementById("sort").value;
+			var search = window.location.search.split("&")[0];
+			switch(x)
+			{
+				case 'Price: low to high':
+					var newURL = "getProducts.php" + search + "&sort=asc" ;
+					break;
+				case 'Price: high to low':
+					var newURL = "getProducts.php" + search + "&sort=desc"  ;
+					//alert(newURL);
+					//window.location = newURL;
+					break;
+				default:
+					var newURL = "getProducts.php" + search ;
+					//alert(newURL);
+					//window.location = newURL;
+					break;						
+			}
+			
+			var xhttp;
+			  
+			  xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				  document.getElementById("products").innerHTML = this.responseText;
+				}
+			  };
+			  xhttp.open("GET", newURL, true);
+			  xhttp.send();  
+		}
 	</script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
@@ -557,11 +560,11 @@
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
+	        start: [ 0, 500 ],
 	        connect: true,
 	        range: {
-	            'min': 50,
-	            'max': 200
+	            'min': 0,
+	            'max': 500
 	        }
 	    });
 
@@ -573,6 +576,33 @@
 	    filterBar.noUiSlider.on('update', function( values, handle ) {
 	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    });
+		
+		function filter()
+		{
+			var values = filterBar.noUiSlider.get();
+			var from = Math.round(values[0]);
+			var to = Math.round(values[1]);
+			//alert("Filtering values from" + from + " to " + to);
+			
+			var search = window.location.search.split("&")[0];
+			
+			var newURL = "getProducts.php" + search + "&from=" + from + "&to=" + to;
+			//alert(newURL);
+			//window.location = newURL;
+			
+			var xhttp;
+			  
+			  xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				  document.getElementById("products").innerHTML = this.responseText;
+				}
+			  };
+			  xhttp.open("GET", newURL, true);
+			  xhttp.send(); 
+			
+		}
+
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
