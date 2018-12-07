@@ -66,6 +66,7 @@ function getLikes($id){
 		<div class="container-menu-header">
 			<?php
 			include 'nav.php';
+			//include_once './database.php';
 			
 			
 							
@@ -224,11 +225,14 @@ function getLikes($id){
 								</button>
 							</div>
 
+							
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
 								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="addtocart()">
 									Add to Cart
 								</button>
+
+								
 							</div>
 						</div>
 					</div>
@@ -238,6 +242,7 @@ function getLikes($id){
 					</div>
 				</div>
 
+				<div class="p-b-45" id="test">
 
 						<script>
 	
@@ -362,8 +367,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		</div>
 	</div>
 
-
-	<!-- Relate Product -->
+<!-- Relate Product -->
 	<section class="relateproduct bgwhite p-t-45 p-b-138">
 		<div class="container">
 			<div class="sec-title p-b-60">
@@ -824,6 +828,9 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 
 
+
+
+
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -867,40 +874,57 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
+				var my_var = <?php echo json_encode($data[0]['productname']); ?>;
+				console.log("Value of var",my_var);
 			});
 		});
 
 		$('.block2-btn-addwishlist').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "is added to wishl !", "success");
+				var my_var = <?php echo json_encode($data[0]['productname']); ?>;
+				console.log("Value of var1",my_var);
 			});
 		});
 
 		$('.btn-addcart-product-detail').each(function(){
 			var nameProduct = $('.product-detail-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
+				swal(nameProduct, "is added to wish !", "success");
+			})		
 		});
-	</script >
-	
-	<script  type="text/javascript">
+
+
 	function addtocart()
-	{
-		var xhttp;
-			  var owner = "<?php echo($_GET['owner']); ?>";
-			  
-			  xhttp = new XMLHttpRequest();
-			  xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				  document.getElementById("test").innerHTML = this.responseText;
-				}
-			  };
-			  xhttp.open("GET", "addtocart.php?owner="+owner, true);
-			  xhttp.send();   
-	}
+		{
+			console.log("Isnide add to cart");
+			var productid = <?php echo json_encode($data[0]['id']); ?>;
+				var producturl = <?php echo json_encode($data[0]['url']); ?>;	
+				var username = "pratik";
+				console.log("usrname",productid);
+				console.log("username",producturl);
+				console.log("usrname",username);
+				var data = {producturl:producturl, productid:productid, username:username}
+			
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.status);
+			document.getElementById('test').innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", "addtocartdb.php?productid="+ productid+"&username="+username +"&producturl="+producturl, true);
+		xhttp.send();
+				
+				//console.log("Value of var2",my_var);
+			
+		}
+
+		
 	</script>
+	
+	
 
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
