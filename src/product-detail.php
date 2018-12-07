@@ -1,7 +1,6 @@
 <?php
 include_once './config/database.php';
 
-$idd = $_GET['id'];
 
 function getLikes($id){
 	$database = new Database();
@@ -239,13 +238,17 @@ function getLikes($id){
 						<script>
 	
 	function like(){
+
 			var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
 			xmlhttp.open("POST", "/addLike.php");
 			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-			xmlhttp.send(JSON.stringify({ "id": "<?php echo $_GET['id'] ?>", "userid": sessionStorage.getItem("login") }));
+			xmlhttp.send(JSON.stringify({ "id": "<?php echo $_GET['id'] ?>", "userid": sessionStorage.getItem("login"),
+				"url":"<?php echo $data[0]['url'] ?>" }));
+			location.reload();
 	}
 
 </script>
+
 				<button onclick="like()"><?php echo getLikes($_GET['id']) ?>  Like </button>
 
 				<div class="p-b-45">
@@ -280,14 +283,74 @@ function getLikes($id){
 
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Reviews (0)
+						Reviews
+						<?php 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include_once './config/database.php';
+
+
+$database = new Database();
+$con = $database->getConnection();
+
+$stmt = $con->prepare('select count(*) as num from review where id='.$_GET['id']);
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	extract($row);
+	echo '('.$num.')';
+}
+
+
+?>
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+
+<?php 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include_once './config/database.php';
+
+
+$database = new Database();
+$con = $database->getConnection();
+
+$stmt = $con->prepare('select * from review where id='.$_GET['id']);
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	extract($row);
+	echo '<h5>'.$userid.'</h5>';
+	echo $review;
+	echo '<hr>';
+}
+
+
+?>
+
+							<form action="addReview.php" method="POST">
+								<input type="hidden" name="id" value="<?php echo $_GET['id'];?>" />
+								<input type="hidden" id="userid" name="userid" />
+								<input type="hidden" name="url" value="<?php echo $data[0]['url'] ?>" />
+								<input type="hidden" id="back" name="back" />
+								<textarea name="review" cols="40" rows="5"></textarea><br>
+								<input type="submit" value="Submit">
+							</form>
+							<script type="text/javascript">
+							document.getElementById("back").value = window.location.href;
+							document.getElementById("userid").value = sessionStorage.getItem("login");</script>
 						</p>
 					</div>
 				</div>

@@ -8,16 +8,15 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once './config/database.php';
 
 
-$data = json_decode(file_get_contents("php://input"));
-
 $database = new Database();
 $con = $database->getConnection();
 
-$insert = "insert into project.likes values (".$data->id.",'".$data->userid."','".$data->url."')";
+$insert = "insert into project.review values (".$_POST['id'].",'".$_POST['userid']."','".$_POST['url']."','".$_POST['review']."')";
 echo $insert;
 $stmt = $con->prepare($insert);
 
 $stmt->execute();
 
+header("Location:".$_POST['back']);
 
 ?>
