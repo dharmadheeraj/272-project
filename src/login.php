@@ -107,6 +107,27 @@
             ?>
             </div>
     </header>
+	<style>
+	   form.leave-comment {
+		               text-align: center;
+					   
+	   }		  
+	   
+	   .fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+	</style>
 
 
                     <form class="leave-comment" action="welcome.php" method="post" class="col-md-6 p-b-30">
@@ -114,22 +135,28 @@
                             Login
                         </h4>
 
-                        <div class="bo4 of-hidden size14 m-b-20">
+                        <div class="bo4 of-hidden size14 m-auto" style="width:400px;text-align: center;">
                             <input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Name">
                         </div>
 
 
-                        <div class="bo4 of-hidden size14 m-b-20">
+                        <div class="bo4 of-hidden size14 m-auto" style="width:400px;text-align: center;">
                             <input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Password">
                         </div>
 
-                        <div class="w-size25">
+                        <div class="w-size25 text-center m-auto" style="width:400px;text-align: center;">
                             <input type="submit" class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
                         </div>
-
+						<br>
+				   <center><strong>OR</strong></center>
+				   <br>
+				   <center>Log in with Facebook</center>
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+					 <center><div class="fa fa-facebook" style="width:400px;text-align: center;">	   
+					 <center><input type="submit" <a href="./facebook.html" class="fa fa-facebook"></a></center>
                     </form>
-
-<a href="./facebook.html">Login with facebook</a>
+					
+                   
 
 </body>
 </html>

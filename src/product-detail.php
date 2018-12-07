@@ -1,3 +1,25 @@
+<?php
+include_once './config/database.php';
+
+
+function getLikes($id){
+	$database = new Database();
+	$con = $database->getConnection();
+
+	$stmt = $con->prepare('select count(*) as num from likes where id='.$id);
+	$stmt->execute();
+
+	$count = 0;
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+		extract($row);
+		$count = $num;
+	}
+	return $count;
+}
+
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +52,10 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body class="animsition">
 
@@ -212,6 +238,23 @@
 					</div>
 				</div>
 
+
+						<script>
+	
+	function like(){
+
+			var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+			xmlhttp.open("POST", "/addLike.php");
+			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xmlhttp.send(JSON.stringify({ "id": "<?php echo $_GET['id'] ?>", "userid": sessionStorage.getItem("login"),
+				"url":"<?php echo $data[0]['url'] ?>" }));
+			location.reload();
+	}
+
+</script>
+
+				<button onclick="like()"><?php echo getLikes($_GET['id']) ?>  Like </button>
+
 				<div class="p-b-45">
 					<span class="s-text8 m-r-35">SKU: MUG-01</span>
 					<span class="s-text8">Categories: Mug, Design</span>
@@ -244,14 +287,74 @@
 
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Reviews (0)
+						Reviews
+						<?php 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include_once './config/database.php';
+
+
+$database = new Database();
+$con = $database->getConnection();
+
+$stmt = $con->prepare('select count(*) as num from review where id='.$_GET['id']);
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	extract($row);
+	echo '('.$num.')';
+}
+
+
+?>
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+
+<?php 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+include_once './config/database.php';
+
+
+$database = new Database();
+$con = $database->getConnection();
+
+$stmt = $con->prepare('select * from review where id='.$_GET['id']);
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	extract($row);
+	echo '<h5>'.$userid.'</h5>';
+	echo $review;
+	echo '<hr>';
+}
+
+
+?>
+
+							<form action="addReview.php" method="POST">
+								<input type="hidden" name="id" value="<?php echo $_GET['id'];?>" />
+								<input type="hidden" id="userid" name="userid" />
+								<input type="hidden" name="url" value="<?php echo $data[0]['url'] ?>" />
+								<input type="hidden" id="back" name="back" />
+								<textarea name="review" cols="40" rows="5"></textarea><br>
+								<input type="submit" value="Submit">
+							</form>
+							<script type="text/javascript">
+							document.getElementById("back").value = window.location.href;
+							document.getElementById("userid").value = sessionStorage.getItem("login");</script>
 						</p>
 					</div>
 				</div>

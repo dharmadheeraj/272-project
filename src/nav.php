@@ -179,7 +179,7 @@ echo('<!--<div class="topbar">
 		')
 ?>
 <script type="text/javascript">
-	if(sessionStorage.getItem("profilepic")!=null)
+	if(sessionStorage.getItem("login")!=null)
 	document.getElementById('name').innerHTML = sessionStorage.getItem("login");
 	if(sessionStorage.getItem("profilepic")!=null)
 	document.getElementById('profilepic').src = sessionStorage.getItem("profilepic");
