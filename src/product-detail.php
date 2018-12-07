@@ -1,3 +1,26 @@
+<?php
+include_once './config/database.php';
+
+$idd = $_GET['id'];
+
+function getLikes($id){
+	$database = new Database();
+	$con = $database->getConnection();
+
+	$stmt = $con->prepare('select count(*) as num from likes where id='.$id);
+	$stmt->execute();
+
+	$count = 0;
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+		extract($row);
+		$count = $num;
+	}
+	return $count;
+}
+
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +53,10 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 </head>
 <body class="animsition">
 
@@ -207,6 +234,19 @@
 						</div>
 					</div>
 				</div>
+
+
+						<script>
+	
+	function like(){
+			var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+			xmlhttp.open("POST", "/addLike.php");
+			xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xmlhttp.send(JSON.stringify({ "id": "<?php echo $_GET['id'] ?>", "userid": sessionStorage.getItem("login") }));
+	}
+
+</script>
+				<button onclick="like()"><?php echo getLikes($_GET['id']) ?>  Like </button>
 
 				<div class="p-b-45">
 					<span class="s-text8 m-r-35">SKU: MUG-01</span>
