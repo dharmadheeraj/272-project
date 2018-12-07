@@ -269,6 +269,118 @@
 			</div>
 		</div>
 	</section>
+	
+		<!-- New Product -->
+	<section class="newproduct bgwhite p-t-45 p-b-105">
+		<div class="container">
+			<div class="sec-title p-b-60">
+				<h3 class="m-text5 t-center">
+					Featured Products
+				</h3>
+			</div>
+
+			<!-- Slide2 -->
+			<div class="wrap-slick2">
+				<div class="slick2" id="topfive">
+					<?php
+						
+						$dbhost = 'linkedin.cx2nnmpqznns.us-east-1.rds.amazonaws.com';
+						$dbport = '3306';
+						$dbname = '272php';
+						$charset = 'utf8' ;
+						$username = 'linkedin_user';
+						$password = 'linkedin_pass';
+						
+
+
+						$dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
+
+						
+						$sql = "select count(id),id,url from project.likes where url like'%" .strtolower($_GET['owner']) . "%' group by id order by count(id) desc LIMIT 4";
+						
+						$result = "";
+						
+						try {
+							$ch = curl_init(); 
+							
+							$conn = new PDO($dsn, $username, $password);
+							// set the PDO error mode to exception
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							// use exec() because no results are returned
+								$output = array();
+
+							foreach ($conn->query($sql) as $row) {
+								array_push($output,$row);
+								}
+							
+							foreach($output as $key => $value)
+							{
+							$url = $output[$key]['url'] . "?id=" . $output[$key]['id'];
+							
+							
+							curl_setopt($ch, CURLOPT_URL, $url); 
+							//return the transfer as a string 
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+							// $output contains the output string 
+							$result = curl_exec($ch);
+							
+							$data =  json_decode($result,true);
+				
+							if (count($data) > 0)
+							{						
+								foreach($data as $key => $value)
+								{
+								echo('<div class="item-slick2 p-l-15 p-r-15">
+												<!-- Block2 -->
+												<div class="block2">
+													<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+														<img src="' .$data[$key]['imagepath'] . '" alt="IMG-PRODUCT" style="height:360px;width:270px">
+
+														<div class="block2-overlay trans-0-4">
+															<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+																<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+																<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+								 							</a>
+
+															<div class="block2-btn-addcart w-size1 trans-0-4">
+																<!-- Button -->
+																<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+																	Add to Cart
+																</button>
+															</div>
+														</div>
+													</div>
+
+													<div class="block2-txt p-t-20">
+														<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+															' . $data[$key]['productname'] . '
+														</a>
+
+														<span class="block2-price m-text6 p-r-5">
+															' . $data[$key]['price'] . '
+														</span>
+													</div>
+												</div>
+											</div>');
+						}
+							}
+									
+						}
+							
+							}
+						catch(PDOException $e)
+							{
+							echo "Connection failed: " . $e->getMessage();
+							}
+
+						?>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	
 
 
 	<!-- Footer -->

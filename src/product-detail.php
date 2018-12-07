@@ -200,11 +200,15 @@
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="addtocart()">
 									Add to Cart
 								</button>
 							</div>
 						</div>
+					</div>
+					
+					<div id="test">
+					
 					</div>
 				</div>
 
@@ -776,6 +780,23 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+	</script >
+	
+	<script  type="text/javascript">
+	function addtocart()
+	{
+		var xhttp;
+			  var owner = "<?php echo($_GET['owner']); ?>";
+			  
+			  xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				  document.getElementById("test").innerHTML = this.responseText;
+				}
+			  };
+			  xhttp.open("GET", "addtocart.php?owner="+owner, true);
+			  xhttp.send();   
+	}
 	</script>
 
 <!--===============================================================================================-->
