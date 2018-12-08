@@ -77,23 +77,28 @@ function getLikes($id){
 							switch($_GET['owner'])
 							{
 								case "Manish":
-									$url = "http://www.manishgangal.com/product_api.php" + $_GET['id'];
+									$url = "http://www.manishgangal.com/product_api.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url); 
 									break;
 								case "Dharma":
-									$url = "http://dharmachintala.com/school/getProducts.php?id=".$_GET['id'];
+									$url = "http://dharmachintala.com/school/getProducts.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url); 
 									break;
 								case "Pratheek":
-									curl_setopt($ch, CURLOPT_URL, "http://www.pratikpagade.com/object.php"); 
+									$url= "http://www.pratikpagade.com/object.php?id=". $_GET['id'];
+									curl_setopt($ch, CURLOPT_URL, $url ); 
 									break;
 								case "Jason":
-									curl_setopt($ch, CURLOPT_URL, "http://www.jasongcenter.com/curl_products.php"); 
+									$url= "http://www.jasongcenter.com/curl_products.php?id=". $_GET['id'];
+									curl_setopt($ch, CURLOPT_URL, $url ); 
 									break;
 								default:
-									curl_setopt($ch, CURLOPT_URL, "http://dharmachintala.com/school/getProducts.php"); 
+									$url= "http://dharmachintala.com/school/getProducts.php?id=". $_GET['id'];
+									curl_setopt($ch, CURLOPT_URL, $url ); 
 									break;
 							}
+							
+							echo $url;
 
 							//return the transfer as a string 
 							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
@@ -145,7 +150,8 @@ function getLikes($id){
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
-		<?php foreach ($data as $key => $value) {
+		<?php 
+			foreach($data as $key => $value) {
 				echo ('
 			<div class="w-size13 p-t-30 respon5">
 				<div class="wrap-slick3 flex-sb flex-w">
@@ -154,7 +160,7 @@ function getLikes($id){
 					<div class="slick3">
 						
 							<div class="wrap-pic-w">
-								<img src="'.$data[0]['imagepath'].'" alt="IMG-PRODUCT">
+								<img src="'.$data[$key]['imagepath'].'" alt="IMG-PRODUCT">
 							
 						</div>
 
