@@ -153,7 +153,7 @@
 				   <center>Log in with Facebook</center>
 					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 					 <center><div class="fa fa-facebook" style="width:400px;text-align: center;">	   
-					 <center><input type="submit" <a href="./facebook.html" class="fa fa-facebook"></a></center>
+					 <center><a href="./facebook.html" class="fa fa-facebook"></a></center>
                     </form>
 					
                    
