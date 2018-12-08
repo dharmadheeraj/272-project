@@ -21,17 +21,22 @@ $login = $user->readOne($_POST["name"],$_POST["password"]);
 if($login>0){
 	$_SESSION['login'] = $_POST["name"];
 	echo $_POST["name"];
-	header("Location: index.php");
+	
 }else{
 
 	header("Location: login.php");
 }
-
-
-	
-   
+  
 ?>
 
+<script>
+	console.log("<?php echo $_SESSION['login'] ?>");
+	sessionStorage.setItem('login', '<?php echo $_SESSION['login'] ?>');
+
+	console.log(sessionStorage.getItem('login'));
+</script>
+
+<?php header("Location: index.php"); ?>
 	</body>
 
 </html>
