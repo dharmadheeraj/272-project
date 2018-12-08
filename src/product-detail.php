@@ -97,9 +97,7 @@ function getLikes($id){
 									curl_setopt($ch, CURLOPT_URL, $url ); 
 									break;
 							}
-							
-							echo $url;
-
+						
 							//return the transfer as a string 
 							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 
