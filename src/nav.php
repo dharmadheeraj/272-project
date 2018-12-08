@@ -113,6 +113,8 @@ echo('<!--<div class="topbar">
 					<span id="name">'.$name.'</span>
 					</a>
 					
+					
+					
 
 					<span class="linedivide1"></span>
 

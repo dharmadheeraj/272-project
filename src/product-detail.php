@@ -79,34 +79,80 @@ function getLikes($id){
 								case "Manish":
 									$url = "http://www.manishgangal.com/product_api.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url); 
+									
+									//return the transfer as a string 
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+									// $output contains the output string 
+									$output = curl_exec($ch); 
+									
+									//echo $output;
+
+									$data =  json_decode($output,true);
 									break;
 								case "Dharma":
 									$url = "http://dharmachintala.com/school/getProducts.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url); 
+									//return the transfer as a string 
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+									// $output contains the output string 
+									$output = curl_exec($ch); 
+									
+									//echo $output;
+
+									$data =  json_decode($output,true);
+									
+									$data = $data[0];
 									break;
 								case "Pratheek":
-									$url= "http://www.pratikpagade.com/object.php?id=". $_GET['id'];
+									$url= "http://www.pratikpagade.com/productdetail.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url ); 
+									
+									//return the transfer as a string 
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+									// $output contains the output string 
+									$output = curl_exec($ch); 
+									
+									//echo $output;
+
+									$data =  json_decode($output,true);
+									$data = $data[0];
 									break;
 								case "Jason":
 									$url= "http://www.jasongcenter.com/curl_products.php?id=". $_GET['id'];
-									curl_setopt($ch, CURLOPT_URL, $url ); 
+									curl_setopt($ch, CURLOPT_URL, $url );
+									//return the transfer as a string 
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+									// $output contains the output string 
+									$output = curl_exec($ch); 
+									
+									//echo $output;
+
+									$data =  json_decode($output,true);
+									
+									$data = $data[0];
 									break;
 								default:
 									$url= "http://dharmachintala.com/school/getProducts.php?id=". $_GET['id'];
 									curl_setopt($ch, CURLOPT_URL, $url ); 
+									curl_setopt($ch, CURLOPT_URL, $url );
+									//return the transfer as a string 
+									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+									// $output contains the output string 
+									$output = curl_exec($ch); 
+									
+									//echo $output;
+
+									$data =  json_decode($output,true);
+									$data = $data[0];
 									break;
 							}
 						
-							//return the transfer as a string 
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-
-							// $output contains the output string 
-							$output = curl_exec($ch); 
 							
-							//echo $output;
-
-							$data =  json_decode($output,true);
 							
 							//print_r ($data);
 					//$pieces = explode("/", $data[0]['imagepath']);
@@ -117,6 +163,7 @@ function getLikes($id){
 								
 							//}
 							
+						
 			?>
 		</div>
 	</header>
@@ -149,8 +196,10 @@ function getLikes($id){
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
 		<?php 
-			foreach($data as $key => $value) {
-				echo ('
+		
+		
+			//foreach($data as $key => $value) {
+		echo ('
 			<div class="w-size13 p-t-30 respon5">
 				<div class="wrap-slick3 flex-sb flex-w">
 					
@@ -158,7 +207,7 @@ function getLikes($id){
 					<div class="slick3">
 						
 							<div class="wrap-pic-w">
-								<img src="'.$data[$key]['imagepath'].'" alt="IMG-PRODUCT">
+								<img src="'.$data['imagepath'].'" alt="IMG-PRODUCT">
 							
 						</div>
 
@@ -169,17 +218,17 @@ function getLikes($id){
 			<div class="w-size14 p-t-30 respon5">
 			<h4 class="product-detail-name m-text16 p-b-13">
 				
-					'.$data[$key]['productname'].'</h4>
+					'.$data['productname'].'</h4>
 				
 
 				<span class="m-text17">
-				'.$data[$key]['price'].'	
+				'.$data['price'].'	
 				</span>
 
 				<p class="s-text8 p-t-10">
-				'.$data[$key]['description'].'
+				'.$data['description'].'
 				</p>');
-			}
+			//}
 			?>
 				<!--  -->
 				<div class="p-t-33 p-b-60">
