@@ -46,42 +46,37 @@
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
 		<h2 class="l-text2 t-center">
-			About
+			Our Team
 		</h2>
 	</section>
 
-	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-38">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 p-b-30">
-					<div class="hov-img-zoom">
-						<img src="images/banner-14.jpg" alt="IMG-ABOUT">
-					</div>
-				</div>
-
-				<div class="col-md-8 p-b-30">
-					<h3 class="m-text26 p-t-15 p-b-16">
-						Our story
-					</h3>
-
-					<p class="p-b-28">
-						Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
-					</p>
-
-					<div class="bo13 p-l-29 m-l-9 p-b-10">
-						<p class="p-b-11">
-							Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-						</p>
-
-						<span class="s-text7">
-							- Steve Job’s
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<div class="py-5 text-center">
+    <div class="container">
+      <div class="row"></div>
+      <div class="row">
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="images/dharmaprofile.jpg" style="height:360px;width:270px" height="200" width="200" alt="Card image cap">
+          <h4> <b>Dharma Dheeraj Chintala</b> </h4>
+          <p class="mb-3">013760968</p>
+          <p class="mb-0">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand.</p>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="images/jasonprofile.jpeg" style="height:360px;width:270px" height="200" width="200" alt="Card image cap">
+          <h4> <b>Jason Gonsalves</b> </h4>
+          <p class="mb-3">013740610</p>
+          <p class="mb-0">Then, my friend, when darkness overspreads my eyes, and heaven and earth seem to dwell in my soul.</p>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="images/pratikprofile.jpg" style="height:360px;width:270px" height="200" width="200">
+          <h4> <b>Pratik Pagade</b> </h4>
+          <p class="mb-3">013750139</p>
+          <p class="mb-0"> I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater.</p>
+        </div>
+        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="images/manishprofile.jpg" style="height:360px;width:270px" height="200" width="200">
+          <h4> <b>Manish Gangal</b> </h4>
+          <p class="mb-3">013720083</p>
+          <p class="mb-0">Artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 	<!-- Footer -->

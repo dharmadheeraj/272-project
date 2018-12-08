@@ -311,7 +311,7 @@ function getLikes($id){
 
 </script>
 
-				<button onclick="like()"><?php echo getLikes($_GET['id']) ?>  Like </button>
+				<button onclick="like()"><?php echo getLikes($_GET['id'])?>  Like </button>
 
 				<div class="p-b-45">
 					<span class="s-text8 m-r-35">SKU: MUG-01</span>
@@ -412,7 +412,8 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							</form>
 							<script type="text/javascript">
 							document.getElementById("back").value = window.location.href;
-							document.getElementById("userid").value = sessionStorage.getItem("login");</script>
+							document.getElementById("userid").value = sessionStorage.getItem("login");
+							</script>
 						</p>
 					</div>
 				</div>
@@ -947,32 +948,34 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 				swal(nameProduct, "is added to wish !", "success");
 			})		
 		});
+		</script>
+		
+		<script type="text/javascript">
 
-
-	function addtocart()
-		{
-			console.log("Isnide add to cart");
-			var productid = <?php echo json_encode($data[0]['id']); ?>;
-				var producturl = <?php echo json_encode($data[0]['url']); ?>;	
-				var username = "pratik";
-				console.log("usrname",productid);
-				console.log("username",producturl);
-				console.log("usrname",username);
-				var data = {producturl:producturl, productid:productid, username:username}
-			
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.status);
-			document.getElementById('test').innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("GET", "addtocartdb.php?productid="+ productid+"&username="+username +"&producturl="+producturl, true);
-		xhttp.send();
-				
-				//console.log("Value of var2",my_var);
-			
-		}
+			function addtocart()
+				{
+					console.log("Isnide add to cart");
+					var productid = <?php echo json_encode($data[0]['id']); ?>;
+						var producturl = <?php echo json_encode($data[0]['url']); ?>;	
+						var username = "pratik";
+						console.log("usrname",productid);
+						console.log("username",producturl);
+						console.log("usrname",username);
+						//var data = {producturl:producturl, productid:productid, username:username}
+					
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						console.log(this.status);
+					document.getElementById('test').innerHTML = this.responseText;
+					}
+				};
+				xhttp.open("GET", "addtocartdb.php?productid="+ productid+"&username="+username +"&producturl="+producturl, true);
+				xhttp.send();
+						
+						//console.log("Value of var2",my_var);
+					
+				}
 
 		
 	</script>

@@ -73,6 +73,7 @@ echo('<!--<div class="topbar">
 								
 							</li>
 
+							
 							<li>
 								<a href="product.php?owner=All">Shop By Department</a>
 								<ul class="sub_menu">
@@ -102,6 +103,16 @@ echo('<!--<div class="topbar">
 							<li>
 								<a href="contact.php">Contact</a>
 							</li>
+							<li>
+							<!-- The form -->
+							<form class="example" method="GET" action="searchresults.php" style="margin:auto;max-width:300px"> 
+			
+							  <input type="text" placeholder="Search.." name="search">
+							  <button type="submit"><i class="fa fa-search"></i></button>
+							</form>
+								
+							</li>
+
 						</ul>
 					</nav>
 				</div>
@@ -112,8 +123,6 @@ echo('<!--<div class="topbar">
 						<img src="images/icons/icon-header-01.png" id="profilepic" class="header-icon1">
 					<span id="name">'.$name.'</span>
 					</a>
-					
-					
 					
 
 					<span class="linedivide1"></span>

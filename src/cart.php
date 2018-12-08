@@ -327,7 +327,10 @@
 			document.getElementById('getcart').innerHTML = this.responseText;
 			}
 		};
-		xhttp.open("GET", "getcart.php",true);
+		var user = sessionStorage.getItem('login');
+		var url = "getcart.php?name=" + user;
+		console.log(url);
+		xhttp.open("GET", url ,true);
 		xhttp.send();
 				
 				//console.log("Value of var2",my_var);

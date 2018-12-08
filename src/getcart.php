@@ -34,7 +34,7 @@ echo('<div class="container-table-cart pos-relative">
 					
 									
 $show = array();
-$sql = "SELECT * from userscart where username='pratik'";
+$sql = "SELECT * from userscart where username='" . $_GET['name'] . "'";
  
     $result = $conn->query($sql);
 	
@@ -46,9 +46,13 @@ $sql = "SELECT * from userscart where username='pratik'";
 		array_push($show,$row);
 	}
 	
+	
+	
 	foreach($show as $key => $value)
 				{
 				$url = $show[$key]['producturl'] . "?id=" . $show[$key]['productid'];
+				
+				
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL, $url); 
@@ -59,7 +63,6 @@ $sql = "SELECT * from userscart where username='pratik'";
 						$result = curl_exec($ch);
 						
 						$data =  json_decode($result,true);
-
 
 			
 						if (count($data) > 0)
